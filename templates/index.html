@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+  <title>Ninja Gold!</title>
+</head>
+
+<body>
+  <div class="container">
+    <form class="yourGold">
+      <label for="yourGold">Your gold:</label>
+      <input class="shadow p-3 mb-5 rounded" type="text" placeholder="{{ session['total'] }}"></input>
+    </form>
+    <div class="mainBox">
+      <div class="row">
+        <div class="card col shadow p-3 mb-5 rounded d-flex text-center align-items-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Farm</h5>
+            <p class="card-text">(Earn 10-20 golds)</p>
+            <form action="/process_money" method="post">
+              <input type="hidden" name="building" value="farm"/>
+              <input class="goldBtn" type="submit" value="Find Gold!"/>
+            </form>            
+          </div>
+        </div>
+        <div class="card col shadow p-3 mb-5 rounded d-flex text-center align-items-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Cave</h5>
+            <p class="card-text">(Earn 5-10 golds)</p>
+            <form action="/process_money" method="post">
+              <input type="hidden" name="building" value="cave"/>
+              <input class="goldBtn" type="submit" value="Find Gold!"/>
+            </form>
+          </div>
+        </div>
+        <div class="card col shadow p-3 mb-5 rounded d-flex text-center align-items-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">House</h5>
+            <p class="card-text">(Earn 2-5 golds)</p>
+            <form action="/process_money" method="post">
+              <input type="hidden" name="building" value="house"/>
+              <input class="goldBtn" type="submit" value="Find Gold!"/>
+            </form>
+          </div>
+        </div>
+        <div class="card col shadow p-3 mb-5 rounded d-flex text-center align-items-center" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Casino</h5>
+            <p class="card-text">(Earn/takes 0-50 golds)</p>
+            <form action="/process_money" method="post">
+              <input type="hidden" name="building" value="casino"/>
+              <input class="goldBtn" type="submit" value="Find Gold!"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="displayBox shadow p-3 mb-5 rounded">
+      <div class="row">
+          <ul>
+            {{ session['string'] | safe }}
+          </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
